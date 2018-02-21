@@ -1,5 +1,7 @@
 package com.ffssabcloud.module.user_module.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class User {
 	private Integer id;
 	private String name;

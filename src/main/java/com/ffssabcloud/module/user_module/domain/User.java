@@ -1,5 +1,7 @@
 package com.ffssabcloud.module.user_module.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class User {
@@ -11,7 +13,14 @@ public class User {
 	private String username;
 	@JsonIgnore
 	private String hashedPassword;
+	private List<Role> roles;
 	
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 	public Integer getId() {
 		return id;
 	}

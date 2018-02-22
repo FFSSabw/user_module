@@ -21,10 +21,10 @@ public class DBConfig {
 		
 		ComboPooledDataSource ds = new ComboPooledDataSource();
 		
-		ds.setDriverClass(env.getProperty("ms.db.driverClassName"));
-		ds.setJdbcUrl(env.getProperty("ms.db.url"));
-		ds.setUser(env.getProperty("ms.db.user"));
-		ds.setPassword(env.getProperty("ms.db.password"));
+		ds.setDriverClass(env.getProperty("fs.db.driverClassName"));
+		ds.setJdbcUrl(env.getProperty("fs.db.url"));
+		ds.setUser(env.getProperty("fs.db.user"));
+		ds.setPassword(env.getProperty("fs.db.password"));
 		ds.setMaxPoolSize(20);
 		ds.setMinPoolSize(5);
 		ds.setInitialPoolSize(10);

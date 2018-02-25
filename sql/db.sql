@@ -5,7 +5,7 @@ CREATE TABLE USER (
     description VARCHAR(1024),
     localtion VARCHAR(512),
     username VARCHAR(128) unique not null,
-    hashedPassword VARCHAR(512) not null,
+    password VARCHAR(512) not null,
     PRIMARY KEY(id)
 )ENGINE=InnoDB;
 

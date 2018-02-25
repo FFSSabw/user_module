@@ -27,7 +27,7 @@ public class RestAuthenticationFilter extends UsernamePasswordAuthenticationFilt
 		throws AuthenticationException {
 		if(MediaType.APPLICATION_JSON_UTF8_VALUE.equals(request.getContentType())
 				|| MediaType.APPLICATION_JSON_VALUE.equals(request.getContentType())) {
-			System.out.println("get request");
+
 			ObjectMapper mapper = new ObjectMapper();
 			UsernamePasswordAuthenticationToken authRequest = null;
 			

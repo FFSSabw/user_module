@@ -23,7 +23,7 @@ public class DBConfig {
 		
 		ds.setDriverClass(env.getProperty("fs.db.driverClassName"));
 		ds.setJdbcUrl(env.getProperty("fs.db.url"));
-		ds.setUser(env.getProperty("fs.db.user"));
+		ds.setUser(env.getProperty("fs.db.username"));
 		ds.setPassword(env.getProperty("fs.db.password"));
 		ds.setMaxPoolSize(20);
 		ds.setMinPoolSize(5);
@@ -32,6 +32,9 @@ public class DBConfig {
 		ds.setAcquireIncrement(5);
 		ds.setIdleConnectionTestPeriod(60);
 		
+		System.out.println(env.getProperty("fs.db.user"));
+		System.out.println(env.getProperty("fs.db.password"));
+		System.out.println(env.getProperty("fs.db.url"));
 		return ds;
 	}
 	

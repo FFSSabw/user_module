@@ -9,7 +9,7 @@ public class MyBatisScannerConfig {
 	@Bean
 	public MapperScannerConfigurer mapperScannerConfigurer() {
 		MapperScannerConfigurer mscf = new MapperScannerConfigurer();
-		mscf.setBasePackage("com.ffssabcloud.module.user_model.dao");
+		mscf.setBasePackage("com.ffssabcloud.module.user_module.domain");
 		mscf.setSqlSessionFactoryBeanName("sqlSessionFactory");
 		
 		return mscf;

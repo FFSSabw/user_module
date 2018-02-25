@@ -11,8 +11,7 @@ public class User {
 	private String description;
 	private String location;
 	private String username;
-	@JsonIgnore
-	private String hashedPassword;
+	private String password;
 	private List<Role> roles;
 	
 	public List<Role> getRoles() {
@@ -57,10 +56,10 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getHashedPassword() {
-		return hashedPassword;
+	public String getPassword() {
+		return password;
 	}
-	public void setHashedPassword(String hashedPassword) {
-		this.hashedPassword = hashedPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

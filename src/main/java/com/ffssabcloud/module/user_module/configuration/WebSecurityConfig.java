@@ -7,37 +7,60 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.ffssabcloud.module.user_module.fliter.RestAuthenticationFilter;
+import com.ffssabcloud.module.user_module.handler.LoginFailureHandler;
+import com.ffssabcloud.module.user_module.handler.LoginSuccessHandler;
 import com.ffssabcloud.module.user_module.service.CustomUserService;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
-	
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
 	@Bean
 	UserDetailsService customUserService() {
 		return new CustomUserService();
 	}
 	
+	@Bean
+	RestAuthenticationFilter restAuthenticationFilter() throws Exception {
+		RestAuthenticationFilter raf = new RestAuthenticationFilter();
+		raf.setAuthenticationSuccessHandler(new LoginSuccessHandler());
+		raf.setAuthenticationFailureHandler(new LoginFailureHandler());
+		raf.setFilterProcessesUrl("/login/self");	
+		raf.setAuthenticationManager(authenticationManagerBean());
+		
+		return raf;
+	}
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(customUserService());
+		auth.userDetailsService(customUserService()).passwordEncoder(new StandardPasswordEncoder());
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.anyRequest()
-					.authenticated()
-				.and()
-				.formLogin()
-					.loginPage("/login")
-					.failureUrl("login?error")
-					.permitAll()
-				.and()
-				.logout()
-					.permitAll();
-					
+		http
+        .cors().and()
+        .antMatcher("/**").authorizeRequests()
+        .antMatchers("/", "/login**").permitAll()
+        .anyRequest().authenticated()
+        .and().formLogin().loginPage("/")
+        .and().csrf().disable();
+		
+		http.addFilterAt(restAuthenticationFilter(), 
+				UsernamePasswordAuthenticationFilter.class);
+//		http.authorizeRequests()
+//        .anyRequest().authenticated() //任何请求,登录后可以访问
+//        .and()
+//        .formLogin()
+//        .loginPage("/login")
+//        .failureUrl("/login?error")
+//        .permitAll() //登录页面用户任意访问
+//        .and()
+//        .logout().permitAll(); //注销行为任意访问
 	}
 
 }

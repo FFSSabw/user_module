@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -52,15 +51,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.addFilterAt(restAuthenticationFilter(), 
 				UsernamePasswordAuthenticationFilter.class);
-//		http.authorizeRequests()
-//        .anyRequest().authenticated() //任何请求,登录后可以访问
-//        .and()
-//        .formLogin()
-//        .loginPage("/login")
-//        .failureUrl("/login?error")
-//        .permitAll() //登录页面用户任意访问
-//        .and()
-//        .logout().permitAll(); //注销行为任意访问
 	}
 
 }

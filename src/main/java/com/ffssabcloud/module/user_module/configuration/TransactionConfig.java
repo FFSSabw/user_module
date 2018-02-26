@@ -13,14 +13,10 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @Configuration
 @ComponentScan
 public class TransactionConfig implements TransactionManagementConfigurer{
+	
 	@Autowired
 	private DataSource dataSource;
 	
-//	@Override
-//	@Bean(name="transactionManager")
-//	public PlatformTransactionManager annotationDrivenTransactionManager() {
-//		return new DataSourceTransactionManager();
-//	}
 	@Bean(name = "transactionManager")
     @Override
     public PlatformTransactionManager annotationDrivenTransactionManager() {

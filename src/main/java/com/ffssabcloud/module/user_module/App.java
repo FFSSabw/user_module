@@ -16,7 +16,7 @@ public class App
 {
     public static void main(String[] args)
     {	
-    	System.out.println(new StandardPasswordEncoder().encode("12345678"));
+//    	System.out.println(new StandardPasswordEncoder().encode("12345678"));
         SpringApplication.run(App.class, args);
 //    	ConfigurableApplicationContext run = run(App.class, args);
     }

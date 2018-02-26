@@ -40,8 +40,8 @@ public class RestAuthenticationFilter extends UsernamePasswordAuthenticationFilt
 				authRequest = new UsernamePasswordAuthenticationToken("", "");
 			} finally {
 				setDetails(request, authRequest);
-				return this.getAuthenticationManager().authenticate(authRequest);
 			}
+			return this.getAuthenticationManager().authenticate(authRequest);
 			
 		} else {
 			return super.attemptAuthentication(request, response);

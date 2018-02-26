@@ -32,9 +32,6 @@ public class DBConfig {
 		ds.setAcquireIncrement(5);
 		ds.setIdleConnectionTestPeriod(60);
 		
-		System.out.println(env.getProperty("fs.db.user"));
-		System.out.println(env.getProperty("fs.db.password"));
-		System.out.println(env.getProperty("fs.db.url"));
 		return ds;
 	}
 	

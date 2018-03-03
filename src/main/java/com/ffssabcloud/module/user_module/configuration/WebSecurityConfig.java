@@ -10,10 +10,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.ffssabcloud.module.user_module.fliter.RestAuthenticationFilter;
 import com.ffssabcloud.module.user_module.handler.LoginFailureHandler;
 import com.ffssabcloud.module.user_module.handler.LoginSuccessHandler;
-import com.ffssabcloud.module.user_module.service.CustomUserService;
+import com.ffssabcloud.module.user_module.security.CustomUserService;
+import com.ffssabcloud.module.user_module.security.RestAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity

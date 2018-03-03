@@ -7,6 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import static org.springframework.boot.SpringApplication.run;
+
+import org.springframework.boot.Banner;
 /**
  * Create the main application
  *
@@ -17,7 +19,9 @@ public class App
     public static void main(String[] args)
     {	
 //    	System.out.println(new StandardPasswordEncoder().encode("12345678"));
-        SpringApplication.run(App.class, args);
-//    	ConfigurableApplicationContext run = run(App.class, args);
+//        SpringApplication.run(App.class, args);
+    	SpringApplication app = new SpringApplication(App.class);
+    	app.setBannerMode(Banner.Mode.OFF);
+    	app.run(args);
     }
 }

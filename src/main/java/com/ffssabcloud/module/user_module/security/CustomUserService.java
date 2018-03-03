@@ -1,4 +1,4 @@
-package com.ffssabcloud.module.user_module.service;
+package com.ffssabcloud.module.user_module.security;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +33,6 @@ public class CustomUserService implements UserDetailsService{
 
 		return new org.springframework.security.core.userdetails.User(user.getUsername(),
                 user.getPassword(), authorities);
-//		List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-//		authorities.add(new SimpleGrantedAuthority("ROLE_a"));
-//		return new org.springframework.security.core.userdetails.User("abc",
-//                "123456", authorities);
+
 	}
 }

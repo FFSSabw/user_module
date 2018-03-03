@@ -1,4 +1,4 @@
-package com.ffssabcloud.module.user_module.web;
+package com.ffssabcloud.module.user_module.exception;
 
 import javax.servlet.http.HttpServletRequest;
 

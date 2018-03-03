@@ -1,4 +1,4 @@
-package com.ffssabcloud.module.user_module.fliter;
+package com.ffssabcloud.module.user_module.security;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,13 +15,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ffssabcloud.module.user_module.AuthenticationBean;
 
-/**
- * RestAuthenticationFilter that supports rest login(json login) and form login
- * @author fssaw
- *
- */
 public class RestAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 	
+	/* 
+	 * 拦截登录request并处理
+	 * @see org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter#attemptAuthentication(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 		throws AuthenticationException {

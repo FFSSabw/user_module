@@ -1,4 +1,4 @@
-package com.ffssabcloud.module.user_module.fliter;
+package com.ffssabcloud.module.user_module.security;
 
 import java.io.IOException;
 
@@ -11,9 +11,9 @@ import javax.servlet.ServletResponse;
 
 import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
+import org.springframework.security.access.intercept.InterceptorStatusToken;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-
 
 public class CustomFilterSecurityInterceptor extends AbstractSecurityInterceptor
 	implements Filter{
@@ -21,7 +21,7 @@ public class CustomFilterSecurityInterceptor extends AbstractSecurityInterceptor
 	private FilterInvocationSecurityMetadataSource securityMetadataSource;
 	
 	/**
-	 * 登陆后每次request都会被这个interceptor拦截
+	 * 拦截后调用doFilter
 	 * @param request
 	 * @param response
 	 * @param chain
@@ -36,19 +36,24 @@ public class CustomFilterSecurityInterceptor extends AbstractSecurityInterceptor
 	}
 	
 	public void invoke(FilterInvocation filterInvocation) throws IOException, ServletException {
+		InterceptorStatusToken token = super.beforeInvocation(filterInvocation);
 		
+		try {
+			filterInvocation.getChain().doFilter(filterInvocation.getRequest(),
+					filterInvocation.getResponse());
+		} finally {
+			super.afterInvocation(token, null);
+		}
 	}
 	
 	@Override
 	public Class<?> getSecureObjectClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return FilterInvocation.class;
 	}
 
 	@Override
 	public SecurityMetadataSource obtainSecurityMetadataSource() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.securityMetadataSource;
 	}
 
 	@Override
@@ -58,7 +63,7 @@ public class CustomFilterSecurityInterceptor extends AbstractSecurityInterceptor
 	}
 
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
+	public void init(FilterConfig filterConfig) throws ServletException {
 		// TODO Auto-generated method stub
 		
 	}
